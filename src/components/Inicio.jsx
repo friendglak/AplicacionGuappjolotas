@@ -60,7 +60,7 @@ const Inicio = () => {
                     <DivHijo>
                         <DivImg />
                         <DivInfo >
-                            <H2Info>Producto</H2Info>
+                            <H2Info>Producto Prueba</H2Info>
                             <H2Price>$25 MXN </H2Price>
                         </DivInfo>
                     </DivHijo>
