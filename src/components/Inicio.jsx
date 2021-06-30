@@ -1,5 +1,4 @@
 import React from 'react'
-
 import {
     Form,
     FormInput,
@@ -18,6 +17,7 @@ import {
 const Inicio = () => {
     return (
         <>
+
             <ContainerMain>
                 <InicioHeading>
                     Nada como una Guajolota para empezar el día.
@@ -40,7 +40,7 @@ const Inicio = () => {
                         <DivImg />
                         <DivInfo >
                             <H2Info>Producto</H2Info>
-                            <H2Price>$25 MXN </H2Price>
+                            <H2Price>$25 MXN</H2Price>
                         </DivInfo>
                     </DivHijo>
                     <DivHijo>
