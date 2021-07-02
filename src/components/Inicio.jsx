@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import {
     Form,
     FormInput,
@@ -12,9 +12,25 @@ import {
     H2Info,
     H2Price
 } from '../style/InicioStyles'
+import getProductos from '../helpers/getProductos.js'
+import { useState } from 'react'
 
 
 const Inicio = () => {
+    const [productos, setProductos] = useState([])
+
+
+    const updateProductos = () =>{
+        getProductos()
+            .then((products) =>{
+                setProductos(products)
+            })
+    }
+    useEffect(() => {
+        updateProductos()
+    }, [])
+
+
     return (
         <>
 
@@ -29,83 +45,17 @@ const Inicio = () => {
                     <FormButton />
                 </Form>
                 <DivPadre>
-                    <DivHijo>
-                        <DivImg />
-                        <DivInfo >
-                            <H2Info>Producto</H2Info>
-                            <H2Price>$25 MXN </H2Price>
-                        </DivInfo>
-                    </DivHijo>
-                    <DivHijo>
-                        <DivImg />
-                        <DivInfo >
-                            <H2Info>Producto</H2Info>
-                            <H2Price>$25 MXN</H2Price>
-                        </DivInfo>
-                    </DivHijo>
-                    <DivHijo>
-                        <DivImg />
-                        <DivInfo >
-                            <H2Info>Producto</H2Info>
-                            <H2Price>$25 MXN </H2Price>
-                        </DivInfo>
-                    </DivHijo>
-                    <DivHijo>
-                        <DivImg />
-                        <DivInfo >
-                            <H2Info>Producto</H2Info>
-                            <H2Price>$25 MXN </H2Price>
-                        </DivInfo>
-                    </DivHijo>
-                    <DivHijo>
-                        <DivImg />
-                        <DivInfo >
-                            <H2Info>Producto Prueba</H2Info>
-                            <H2Price>$25 MXN </H2Price>
-                        </DivInfo>
-                    </DivHijo>
-                    <DivHijo>
-                        <DivImg />
-                        <DivInfo >
-                            <H2Info>Producto</H2Info>
-                            <H2Price>$25 MXN </H2Price>
-                        </DivInfo>
-                    </DivHijo>
-                    <DivHijo>
-                        <DivImg />
-                        <DivInfo >
-                            <H2Info>Producto</H2Info>
-                            <H2Price>$25 MXN </H2Price>
-                        </DivInfo>
-                    </DivHijo>
-                    <DivHijo>
-                        <DivImg />
-                        <DivInfo >
-                            <H2Info>Producto</H2Info>
-                            <H2Price>$25 MXN </H2Price>
-                        </DivInfo>
-                    </DivHijo>
-                    <DivHijo>
-                        <DivImg />
-                        <DivInfo >
-                            <H2Info>Producto</H2Info>
-                            <H2Price>$25 MXN </H2Price>
-                        </DivInfo>
-                    </DivHijo>
-                    <DivHijo>
-                        <DivImg />
-                        <DivInfo >
-                            <H2Info>Producto</H2Info>
-                            <H2Price>$25 MXN </H2Price>
-                        </DivInfo>
-                    </DivHijo>
-                    <DivHijo>
-                        <DivImg />
-                        <DivInfo >
-                            <H2Info>Producto</H2Info>
-                            <H2Price>$25 MXN </H2Price>
-                        </DivInfo>
-                    </DivHijo>
+                    {
+                        productos.map((element) =>(
+                            <DivHijo key={element.id}>
+                                <DivImg style={{backgroundImage: `url(${element.imagen})`}}/>
+                                <DivInfo >
+                                    <H2Info>{element.nombre}</H2Info>
+                                    <H2Price>${element.price} MXN </H2Price>
+                                </DivInfo>
+                            </DivHijo>
+                        ))
+                    }
                 </DivPadre>
 
             </ContainerMain>

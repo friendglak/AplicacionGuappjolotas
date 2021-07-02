@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import TamalMole from '../images/products/T-MOLE.png';
 
 
-const ContainerMain = styled.form`
+const ContainerMain = styled.div`
     z-index: 1;
     width: 100%;
     max-width: 1500px;
@@ -55,7 +54,6 @@ const DivImg = styled.div`
     display: flex;
     height: 65px;
     align-self: flex-start;
-    background: url(${TamalMole}) 0 45% no-repeat;
     background-size: 100% 100%;
 `;
 
