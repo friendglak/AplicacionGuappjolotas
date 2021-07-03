@@ -47,8 +47,8 @@ const Inicio = () => {
                     {
 
                         productos.map((element) => (
-                            <Link>
-                                <DivHijo to="/detalles" key={element.id}>
+                            <Link to={`/detalles/${element.id}`} key={element.id}>
+                                <DivHijo  >
                                     <DivImg style={{ backgroundImage: `url(${element.imagen})` }} />
                                     <DivInfo >
                                         <H2Info>{element.nombre}</H2Info>
