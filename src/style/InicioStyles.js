@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { Link } from 'react-router-dom';
 
 const ContainerMain = styled.div`
     z-index: 1;
@@ -27,6 +27,10 @@ const DivPadre = styled.div`
   align-content: normal;
   margin: 20px 0px 200px 0px;
      
+`;
+
+const DetailsLink = styled(Link)`
+    text-decoration: none;
 `;
 
 const DivHijo = styled.div`
@@ -200,5 +204,6 @@ export {
     DivImg,
     DivInfo,
     H2Info,
-    H2Price
+    H2Price,
+    DetailsLink
 }
