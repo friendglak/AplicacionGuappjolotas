@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import loginService from '../helpers/services/Users'
 import regeneratorRuntime from "regenerator-runtime";
+import { ContainerLogin, ContainerMain, FormLogin, H1Login, InputLogin, ButtonLogin} from '../style/LoginStyles';
+
 
 const Login = () => {
 
@@ -17,8 +19,8 @@ const Login = () => {
             console.log(user1.username);
             const prueba = user1.filter(usuarios => (
                 usuarios.username === username && usuarios.password === password
-                    ?console.log('Datos validos')
-                    :console.log('Datos inválidos')
+                    ? console.log('Datos validos')
+                    : console.log('Datos inválidos')
             ))
             console.log(prueba);
             console.log(user);
@@ -34,26 +36,30 @@ const Login = () => {
 
     return (
         <>
-        
-            <form onSubmit={handleLogin}>
-                <input
-                    type="text"
-                    value={username}
-                    name='Username'
-                    placeholder='Username'
-                    onChange={({ target }) => {
-                        setUsername(target.value)
 
-                    }} />
+            <ContainerMain>
+                <ContainerLogin>
+                    <FormLogin onSubmit={handleLogin}>
+                        <H1Login>Iniciar sesión</H1Login>
+                        <InputLogin
+                            type="text"
+                            value={username}
+                            name='Username'
+                            placeholder='Usuario'
+                            onChange={({ target }) => {
+                                setUsername(target.value)
 
-                <input
-                    type="password"
-                    value={password}
-                    name='Password'
-                    placeholder='password'
-                    onChange={({ target }) => setPassword(target.value)} />
-                <button>Login</button>
-            </form>
+                            }} />
+                        <InputLogin
+                            type="password"
+                            value={password}
+                            name='Password'
+                            placeholder='Contraseña'
+                            onChange={({ target }) => setPassword(target.value)} />
+                        <ButtonLogin>Entrar</ButtonLogin>
+                    </FormLogin>
+                </ContainerLogin>
+            </ContainerMain>
         </>
     )
 }
