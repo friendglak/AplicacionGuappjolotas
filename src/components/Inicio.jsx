@@ -41,12 +41,10 @@ const Inicio = () => {
                 </InicioHeading>
                 <Form>
                     <FormInput id="search" type="search" name="" required placeholder="Sabor de guajalota, bebida...">
-
                     </FormInput>
                 </Form>
                 <DivPadre>
                     {
-
                         productos.map((element) => (
                             <DetailsLink to={`/detalles/${element.id}`} key={element.id}>
                                 <DivHijo  >
