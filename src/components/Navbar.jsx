@@ -56,11 +56,6 @@ const Navbar = () => {
                                 </NavLinks>
                             </NavItem>
                             <NavItem>
-                                <NavLinks to='/registrarse' onClick={closeMobileMenu}>
-                                   Registrarse
-                                </NavLinks>
-                            </NavItem>
-                            <NavItem>
                                 <NavLinks to='/carrito' onClick={closeMobileMenu}>
                                     <NavShop />
                                 </NavLinks>
