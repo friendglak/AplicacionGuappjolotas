@@ -3,10 +3,11 @@ import GlobalStyle from '../globalStyles.js';
 import Navbar from '../components/Navbar.jsx';
 import Footer from '../components/Footer.jsx';
 import Inicio from '../components/Inicio.jsx'
+import Login from '../components/Login.jsx';
+//import ScrollToTop from '../components/ScrollToTop'
 
-// import ScrollToTop from '../components/ScrollToTop'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
-import { BrowserRouter as Router } from 'react-router-dom';
 
 const App = () => {
   return (
@@ -14,7 +15,10 @@ const App = () => {
     <Router>
       <GlobalStyle />
       <Navbar />
-      <Inicio />
+      <Switch>
+        <Route path="/inicio" component={Inicio} />
+        <Route path="/ingresar" component={Login} />
+      </Switch>
       <Footer />
     </Router >
 

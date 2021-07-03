@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React, { useEffect } from 'react'
 import {
     Form,
     FormInput,
@@ -20,16 +20,15 @@ const Inicio = () => {
     const [productos, setProductos] = useState([])
 
 
-    const updateProductos = () =>{
+    const updateProductos = () => {
         getProductos()
-            .then((products) =>{
+            .then((products) => {
                 setProductos(products)
             })
     }
     useEffect(() => {
         updateProductos()
     }, [])
-
 
     return (
         <>
@@ -39,27 +38,24 @@ const Inicio = () => {
                     Nada como una Guajolota para empezar el día.
                 </InicioHeading>
                 <Form>
-                    <FormInput id="search" type="search" name="" required placeholder="Sabor de guajalota, bebida..."> 
+                    <FormInput id="search" type="search" name="" required placeholder="Sabor de guajalota, bebida...">
 
                     </FormInput>
-                    <FormButton />
                 </Form>
                 <DivPadre>
                     {
-                        productos.map((element) =>(
+                        productos.map((element) => (
                             <DivHijo key={element.id}>
-                                <DivImg style={{backgroundImage: `url(${element.imagen})`}}/>
+                                <DivImg style={{ backgroundImage: `url(${element.imagen})` }} />
                                 <DivInfo >
                                     <H2Info>{element.nombre}</H2Info>
-                                    <H2Price>${element.price} MXN </H2Price>
+                                    <H2Price>${element.precio} MXN </H2Price>
                                 </DivInfo>
                             </DivHijo>
                         ))
                     }
                 </DivPadre>
-
             </ContainerMain>
-
         </>
     )
 }
