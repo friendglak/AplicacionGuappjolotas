@@ -8,20 +8,24 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const [user, setUser] = useState(null)
 
+
+
     const handleLogin = async (event) => {
         event.preventDefault();
         try {
-            const user = await loginService.login({
-                username,
-                password
-            })
+            const user1 = await loginService.login()
+            console.log(user1.username);
+            const prueba = user1.filter(usuarios => (
+                usuarios.username === username && usuarios.password === password
+                    ?console.log('Datos validos')
+                    :console.log('Datos inválidos')
+            ))
+            console.log(prueba);
             console.log(user);
-            setUser(user)
-            setUsername('')
+            setId('')
+            setUser(user1)
             setPassword('')
-            console.log("Kua Kua Kua esto es un submit");
         } catch (error) {
-            console.log('Amén y el error.');
             setTimeout(() => {
                 console.log(null)
             }, 5000)
@@ -30,13 +34,18 @@ const Login = () => {
 
     return (
         <>
+        
             <form onSubmit={handleLogin}>
                 <input
                     type="text"
                     value={username}
                     name='Username'
                     placeholder='Username'
-                    onChange={({ target }) => setUsername(target.value)} />
+                    onChange={({ target }) => {
+                        setUsername(target.value)
+
+                    }} />
+
                 <input
                     type="password"
                     value={password}
@@ -45,8 +54,6 @@ const Login = () => {
                     onChange={({ target }) => setPassword(target.value)} />
                 <button>Login</button>
             </form>
-
-
         </>
     )
 }

@@ -4,9 +4,11 @@ import Navbar from '../components/Navbar.jsx';
 import Footer from '../components/Footer.jsx';
 import Inicio from '../components/Inicio.jsx'
 import Login from '../components/Login.jsx';
+import Details from '../components/Details.jsx';
 //import ScrollToTop from '../components/ScrollToTop'
 
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+
 
 
 const App = () => {
@@ -18,6 +20,7 @@ const App = () => {
       <Switch>
         <Route path="/inicio" component={Inicio} />
         <Route path="/ingresar" component={Login} />
+        <Route path="/detalles" component={Details} />
       </Switch>
       <Footer />
     </Router >

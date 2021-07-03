@@ -14,6 +14,7 @@ import {
 } from '../style/InicioStyles'
 import getProductos from '../helpers/getProductos.js'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 
 const Inicio = () => {
@@ -44,14 +45,17 @@ const Inicio = () => {
                 </Form>
                 <DivPadre>
                     {
+
                         productos.map((element) => (
-                            <DivHijo key={element.id}>
-                                <DivImg style={{ backgroundImage: `url(${element.imagen})` }} />
-                                <DivInfo >
-                                    <H2Info>{element.nombre}</H2Info>
-                                    <H2Price>${element.precio} MXN </H2Price>
-                                </DivInfo>
-                            </DivHijo>
+                            <Link>
+                                <DivHijo to="/detalles" key={element.id}>
+                                    <DivImg style={{ backgroundImage: `url(${element.imagen})` }} />
+                                    <DivInfo >
+                                        <H2Info>{element.nombre}</H2Info>
+                                        <H2Price>${element.precio} MXN </H2Price>
+                                    </DivInfo>
+                                </DivHijo>
+                            </Link>
                         ))
                     }
                 </DivPadre>

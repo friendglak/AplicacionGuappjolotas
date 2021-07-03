@@ -45,7 +45,7 @@ const DivHijo = styled.div`
   justify-content: normal;
   align-items: normal;
   align-content: normal;
-
+  
  background-color: #E7E7E7;
 `;
 
