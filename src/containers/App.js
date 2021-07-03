@@ -20,7 +20,7 @@ const App = () => {
       <Switch>
         <Route path="/inicio" component={Inicio} />
         <Route path="/ingresar" component={Login} />
-        <Route path="/detalles" component={Details} />
+        <Route path="/detalles/:id" component={Details} />
       </Switch>
       <Footer />
     </Router >
