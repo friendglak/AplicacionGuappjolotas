@@ -1,15 +1,19 @@
+import { CompassCalibrationOutlined } from '@material-ui/icons';
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import getProductos from '../helpers/getProductos';
 
 const Details = () => {
+
     const { id } = useParams();
     const [producto, setProducto] = useState([]);
     const [sabores, setSabores] = useState(null);
     const [productos, setProductos] = useState(null);
-    const [contadorProducto, setContadorProducto] = useState(0)
-    const [carrito, setCarrito] = useState([])
+    const [contadorProducto, setContadorProducto] = useState(0);
+    const [productoCheck, setProductoCheck] = useState([]);
+    const [carritoCheck, setCarritoCheck] = useState([])
+
     useEffect(() => {
         const getProducto = async () =>{
             const url = `https://api-guapjolotas-2021.vercel.app/productos/${id}`
@@ -75,7 +79,7 @@ const Details = () => {
                     <img src={element.imagen} alt={element.nombre} />
                     <h4>{element.nombre}</h4>
                     <h5>+${element.precio} MXN</h5>
-                    <input type="checkbox"  onChange={(e)=>e.target.checked?_handleCheck(element): _handleCheck(0)}/>
+                    <input type="checkbox"  onChange={(e)=>e.target.checked && _handleCheck(element)}/>
                 </label>
             </div>
         )))
@@ -92,29 +96,39 @@ const Details = () => {
 
 
 
+// Arreglar el checkbox que me deje subir varios combos
+    const _handleCheck = (element) =>{
+        const {nombre } = element
+        // console.log(productoCheck) 
+        setProductoCheck([
+            ...productoCheck,
+            element
+        ])
 
-    const _handleCheck = (e) =>{
-        e && setCarrito(...carrito, [e]);
-        console.log(e)
-        // const {checked} = e.target;
-        // const {currentSrc} = e.target.parentElement.children[0];
-        // checked && console.log(checked, currentSrc);
-
-        console.log(carrito)
     }
 
+    const _handleFiltroCheck = () => {
+        // const probando =  productoCheck.filter(ele => ele.nombre === ele.nombre)
 
+        const myUniqueArray = [...new Set(productoCheck)]; // myArray = [...new Set(myArray)];
 
+        console.log(myUniqueArray); // console.log(myArray)
 
-
-
-
-
+        setCarritoCheck(myUniqueArray)
+        console.log(carritoCheck)
+        
+        // console.log(productoCheck)
+        // console.log(probando)
+        // setProductoCheck()
+    }
 
     const _handleAddCarrito = () =>{
-        // const productosCarrito = producto.precio * contadorProducto
-        console.log("agregando al carrito", producto, contadorProducto)
+        _handleFiltroCheck()
+        localStorage.setItem("Producto", JSON.stringify(producto));
+        localStorage.setItem("Cantidad Producto", JSON.stringify(contadorProducto));
+        localStorage.setItem("Combo", JSON.stringify(productoCheck));
     }
+
     return (
         <div>
             <div>
