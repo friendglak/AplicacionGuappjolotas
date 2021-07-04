@@ -12,7 +12,7 @@ const Details = () => {
     const [productos, setProductos] = useState(null);
     const [contadorProducto, setContadorProducto] = useState(0);
     const [productoCheck, setProductoCheck] = useState([]);
-    const [carritoCheck, setCarritoCheck] = useState([])
+
 
     useEffect(() => {
         const getProducto = async () =>{
@@ -40,6 +40,7 @@ const Details = () => {
         }
         updateProductos()
     }, [])
+
 
 
 
@@ -79,7 +80,7 @@ const Details = () => {
                     <img src={element.imagen} alt={element.nombre} />
                     <h4>{element.nombre}</h4>
                     <h5>+${element.precio} MXN</h5>
-                    <input type="checkbox"  onChange={(e)=>e.target.checked && _handleCheck(element)}/>
+                    <input type="checkbox"  onChange={(e)=>e.target.checked? _handleCheck(element): _handleRemoveCheck(element)}/>
                 </label>
             </div>
         )))
@@ -98,35 +99,27 @@ const Details = () => {
 
 // Arreglar el checkbox que me deje subir varios combos
     const _handleCheck = (element) =>{
-        const {nombre } = element
-        // console.log(productoCheck) 
         setProductoCheck([
             ...productoCheck,
             element
         ])
-
+   
+    }
+    const _handleRemoveCheck = (element) =>{
+        const removeCheck = productoCheck.filter( ele => ele !== element );
+        setProductoCheck(removeCheck)
     }
 
-    const _handleFiltroCheck = () => {
-        // const probando =  productoCheck.filter(ele => ele.nombre === ele.nombre)
 
-        const myUniqueArray = [...new Set(productoCheck)]; // myArray = [...new Set(myArray)];
-
-        console.log(myUniqueArray); // console.log(myArray)
-
-        setCarritoCheck(myUniqueArray)
-        console.log(carritoCheck)
-        
-        // console.log(productoCheck)
-        // console.log(probando)
-        // setProductoCheck()
-    }
 
     const _handleAddCarrito = () =>{
-        _handleFiltroCheck()
+        //sube los productos del combo
+        const comboCheck =  [...new Set(productoCheck)];
+
+
         localStorage.setItem("Producto", JSON.stringify(producto));
         localStorage.setItem("Cantidad Producto", JSON.stringify(contadorProducto));
-        localStorage.setItem("Combo", JSON.stringify(productoCheck));
+        localStorage.setItem("Combo", JSON.stringify(comboCheck));
     }
 
     return (
@@ -149,7 +142,7 @@ const Details = () => {
                 <h3>Guajolocombo</h3>
                 {tipoCombo()}
             </div>
-            <button onClick={_handleAddCarrito}>Agregar al carrito</button>
+            <button onClick={_handleAddCarrito} to='/carrito' >Agregar al carrito</button>
         </div>
     )
 }
