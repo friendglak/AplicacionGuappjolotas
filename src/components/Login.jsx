@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import loginService from '../helpers/services/Users'
 import regeneratorRuntime from "regenerator-runtime";
-import { ContainerLogin, ContainerMain, FormLogin, H1Login, InputLogin, ButtonLogin} from '../style/LoginStyles';
+import { ContainerLogin, ContainerMain, FormLogin, H1Login, InputLogin, ButtonLogin } from '../style/LoginStyles';
 
 
 const Login = () => {
@@ -19,7 +19,7 @@ const Login = () => {
             console.log(user1.username);
             const prueba = user1.filter(usuarios => (
                 usuarios.username === username && usuarios.password === password
-                    ? console.log('Datos validos')
+                    ? window.location.href='/inicio'
                     : console.log('Datos inválidos')
             ))
             console.log(prueba);

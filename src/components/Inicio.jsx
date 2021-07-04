@@ -10,7 +10,8 @@ import {
     DivImg,
     DivInfo,
     H2Info,
-    H2Price
+    H2Price,
+    DetailsLink
 } from '../style/InicioStyles'
 import getProductos from '../helpers/getProductos.js'
 import { useState } from 'react'
@@ -40,14 +41,12 @@ const Inicio = () => {
                 </InicioHeading>
                 <Form>
                     <FormInput id="search" type="search" name="" required placeholder="Sabor de guajalota, bebida...">
-
                     </FormInput>
                 </Form>
                 <DivPadre>
                     {
-
                         productos.map((element) => (
-                            <Link to={`/detalles/${element.id}`} key={element.id}>
+                            <DetailsLink to={`/detalles/${element.id}`} key={element.id}>
                                 <DivHijo  >
                                     <DivImg style={{ backgroundImage: `url(${element.imagen})` }} />
                                     <DivInfo >
@@ -55,7 +54,7 @@ const Inicio = () => {
                                         <H2Price>${element.precio} MXN </H2Price>
                                     </DivInfo>
                                 </DivHijo>
-                            </Link>
+                            </DetailsLink>
                         ))
                     }
                 </DivPadre>
