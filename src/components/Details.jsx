@@ -9,7 +9,7 @@ const Details = () => {
     const [sabores, setSabores] = useState(null);
     const [productos, setProductos] = useState(null);
     const [contadorProducto, setContadorProducto] = useState(0)
-
+    const [carrito, setCarrito] = useState([])
     useEffect(() => {
         const getProducto = async () =>{
             const url = `https://api-guapjolotas-2021.vercel.app/productos/${id}`
@@ -71,20 +71,49 @@ const Details = () => {
     const pintarCombo = (combo) =>{
         return (combo.map(element =>(
             <div  key={element.id}>
-                <img src={element.imagen} alt={element.nombre} />
-                <h4>{element.nombre}</h4>
-                <h5>+${element.precio} MXN</h5>
-                <label><input type="checkbox" value="first_checkbox"/> Este es mi primer checkbox</label><br></br>
+                <label>
+                    <img src={element.imagen} alt={element.nombre} />
+                    <h4>{element.nombre}</h4>
+                    <h5>+${element.precio} MXN</h5>
+                    <input type="checkbox"  onChange={(e)=>e.target.checked?_handleCheck(element): _handleCheck(0)}/>
+                </label>
             </div>
         )))
     }
 
 
-    const _handleDisminuir = () => {
+    const _handleDisminuir = () => { 
         contadorProducto <= 0? setContadorProducto(0):setContadorProducto(contadorProducto - 1);
-    }
+    } 
     const _handleAumentar = () => {
         setContadorProducto(contadorProducto + 1)
+    }
+
+
+
+
+
+    const _handleCheck = (e) =>{
+        e && setCarrito(...carrito, [e]);
+        console.log(e)
+        // const {checked} = e.target;
+        // const {currentSrc} = e.target.parentElement.children[0];
+        // checked && console.log(checked, currentSrc);
+
+        console.log(carrito)
+    }
+
+
+
+
+
+
+
+
+
+    const _handleAddCarrito = () =>{
+        // const productosCarrito = producto.precio * contadorProducto
+        console.log("agregando al carrito", producto, contadorProducto)
     }
     return (
         <div>
@@ -106,6 +135,7 @@ const Details = () => {
                 <h3>Guajolocombo</h3>
                 {tipoCombo()}
             </div>
+            <button onClick={_handleAddCarrito}>Agregar al carrito</button>
         </div>
     )
 }
