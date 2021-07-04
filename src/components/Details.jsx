@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import getProductos from '../helpers/getProductos';
-
+import {Link }from 'react-router-dom'
 const Details = () => {
 
     const { id } = useParams();
@@ -142,7 +142,9 @@ const Details = () => {
                 <h3>Guajolocombo</h3>
                 {tipoCombo()}
             </div>
-            <button onClick={_handleAddCarrito} to='/carrito' >Agregar al carrito</button>
+            <Link to='/carrito'>
+                <button onClick={_handleAddCarrito}  >Agregar al carrito</button>
+            </Link>
         </div>
     )
 }
