@@ -1,8 +1,6 @@
 import { CompassCalibrationOutlined } from '@material-ui/icons';
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import getProductos from '../helpers/getProductos';
 import { Link } from 'react-router-dom'
 import {
 ContainerButtonD,
@@ -20,35 +18,28 @@ TextoPintarCombo,
 ButtonCar
 }
     from '../style/DetailsStyles';
+import getProductoId from '../helpers/getProductoId';
+import getSaboresApi from '../helpers/getSaboresApi';
+import getProductos from '../helpers/getProductos';
+import CantidadProducto from '../hooks/CantidadProducto';
+import ComboCheck from '../hooks/ComboCheck';
+
+
 
 const Details = () => {
 
-    const { id } = useParams();
-    const [producto, setProducto] = useState([]);
-    const [sabores, setSabores] = useState(null);
+    const {producto, getProducto} = getProductoId();
+    const {sabores, getSabores} = getSaboresApi();
+    const {contadorProducto, _handleAumentar, _handleDisminuir} = CantidadProducto();
+    const {productoCheck, _handleCheck, _handleRemoveCheck} = ComboCheck();
     const [productos, setProductos] = useState(null);
-    const [contadorProducto, setContadorProducto] = useState(0);
-    const [productoCheck, setProductoCheck] = useState([]);
+
 
 
     useEffect(() => {
-        const getProducto = async () => {
-            const url = `https://api-guapjolotas-2021.vercel.app/productos/${id}`
-            const res = await fetch(url);
-            const data = await res.json();
-            setProducto(data);
-        }
         getProducto()
-        const getSabores = async () => {
-            const url = `https://api-guapjolotas-2021.vercel.app/sabores/`
-            const res = await fetch(url);
-            const data = await res.json();
-            const arr = await data.map((element, i) => (element));
-            setSabores(arr[0])
-
-        }
         getSabores();
-
+// Obtiene de la api los productos que iran en Guajocombo
         const updateProductos = () => {
             getProductos()
                 .then((products) => {
@@ -60,7 +51,7 @@ const Details = () => {
 
 
 
-
+//definiendo el Sabor del producto
     const tipoSabor = () => {
         if (producto.tipoSabor && sabores) {
             return producto.tipoSabor === "tamal" ? pintarSabor(sabores.tamal) :
@@ -77,8 +68,8 @@ const Details = () => {
                 style={addOpacidad(element.sabor)}></img>
         ))
     }
-
-
+// 
+//Definiendo el Combo segun la informacion de la API
     const tipoCombo = () => {
         if (producto.tipoSabor && productos) {
             return producto.tipoSabor === "tamal" ? filtrarCombo("Bebidas") :
@@ -102,41 +93,26 @@ const Details = () => {
             </PintarCombo >
         )))
     }
-
-
-    const _handleDisminuir = () => {
-        contadorProducto <= 0 ? setContadorProducto(0) : setContadorProducto(contadorProducto - 1);
-    }
-    const _handleAumentar = () => {
-        setContadorProducto(contadorProducto + 1)
-    }
-
-
-
-
-    // Arreglar el checkbox que me deje subir varios combos
-    const _handleCheck = (element) => {
-        setProductoCheck([
-            ...productoCheck,
-            element
-        ])
-
-    }
-    const _handleRemoveCheck = (element) => {
-        const removeCheck = productoCheck.filter(ele => ele !== element);
-        setProductoCheck(removeCheck)
-    }
-
-
-
+//
+// Subiendo A localStorage
     const _handleAddCarrito = () => {
         //sube los productos del combo
         const comboCheck = [...new Set(productoCheck)];
 
-
+        // const carrito = {
+            
+        //         "producto": producto,
+            
+            
+        //         "combo": comboCheck,
+            
+            
+        //         "cantidad": contadorProducto
+        // }
         localStorage.setItem("Producto", JSON.stringify(producto));
         localStorage.setItem("Cantidad Producto", JSON.stringify(contadorProducto));
         localStorage.setItem("Combo", JSON.stringify(comboCheck));
+        // localStorage.setItem("Carrito", JSON.stringify(carrito))
     }
 
     return (
