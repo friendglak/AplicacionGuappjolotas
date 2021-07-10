@@ -98,21 +98,18 @@ const Details = () => {
     const _handleAddCarrito = () => {
         //sube los productos del combo
         const comboCheck = [...new Set(productoCheck)];
+        const carrito =[ {
+                "producto": {
+                    nombre: producto.nombre,
+                    id: producto.id,
+                    precio : producto.precio,
+                    imagen: producto.imagen,
+                    cantidad: contadorProducto,
+                },
+                "combo": comboCheck
+        }]
 
-        // const carrito = {
-            
-        //         "producto": producto,
-            
-            
-        //         "combo": comboCheck,
-            
-            
-        //         "cantidad": contadorProducto
-        // }
-        localStorage.setItem("Producto", JSON.stringify(producto));
-        localStorage.setItem("Cantidad Producto", JSON.stringify(contadorProducto));
-        localStorage.setItem("Combo", JSON.stringify(comboCheck));
-        // localStorage.setItem("Carrito", JSON.stringify(carrito))
+        localStorage.setItem("Carrito", JSON.stringify(carrito))
     }
 
     return (

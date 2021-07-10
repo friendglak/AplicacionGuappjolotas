@@ -1,10 +1,10 @@
 import {useState} from 'react'
 
 const GetLocalStorage = () => {
-    const [carrito, setCarrito] = useState(null)
-    
+    const [carrito, setCarrito] = useState([]);
+
     const getProductoLocalStorage = () => {
-        setCarrito(JSON.parse(localStorage.getItem("Cantidad Producto")))
+        setCarrito(JSON.parse(localStorage.getItem("Carrito")));
     }
     return {carrito, getProductoLocalStorage}
 }
