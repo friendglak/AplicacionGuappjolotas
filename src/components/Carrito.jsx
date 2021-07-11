@@ -17,6 +17,7 @@ const Carrito = () => {
         <div>
             <h1>Carrito</h1>
             <PaintProductoCarrito carrito={carrito} setCarrito={setCarrito}/>
+            <button>Pagar</button>
         </div>
     )
 }

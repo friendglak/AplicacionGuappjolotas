@@ -108,7 +108,8 @@ const Details = () => {
                 cantidad: contadorProducto,
             };
         const carrito = comboCheck;
-        comboCheck.unshift(productoPrincipal);
+        
+        productoPrincipal.cantidad > 0? comboCheck.unshift(productoPrincipal): null;
                 // {comboCheck}
         
 
