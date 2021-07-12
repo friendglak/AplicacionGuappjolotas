@@ -1,6 +1,8 @@
 import React from 'react'
 
 const NavCategoria = ({productos, setProductosCategoria}) => {
+    
+
     const _handleCategoria = (e) => {
         const categoria = productos.filter(ele => ele.categoria === e.target.innerText);
         setProductosCategoria(categoria)

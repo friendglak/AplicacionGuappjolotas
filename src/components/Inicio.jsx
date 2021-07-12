@@ -43,8 +43,7 @@ const Inicio = () => {
                 <InicioHeading>
                     Nada como una Guajolota para empezar el día.
                 </InicioHeading>
-                <SearchProducto/>
-                {/* Agregar nav categoria */}
+                <SearchProducto productos={productos}/>
                 <NavCategoria productos={productos} setProductosCategoria={setProductosCategoria}/>
                 <DivPadre >
                     {
