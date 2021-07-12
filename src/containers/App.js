@@ -20,7 +20,7 @@ const App = () => {
       <GlobalStyle />
       <Navbar />
       <Switch>
-        <Route path="/" component={Inicio} />
+        <Route path="/inicio" component={Inicio} />
         <Route path="/ingresar" component={Login} />
         <Route path="/detalles/:id" component={Details} />
         <Route path="/carrito" component={Carrito} />
