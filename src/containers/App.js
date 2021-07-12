@@ -9,6 +9,7 @@ import Carrito from '../components/Carrito.jsx';
 //import ScrollToTop from '../components/ScrollToTop'
 
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import Waiting from '../components/Waiting.jsx';
 
 
 
@@ -20,6 +21,7 @@ const App = () => {
       <GlobalStyle />
       <Navbar />
       <Switch>
+        <Route path="/" exact component={Waiting}/>
         <Route path="/inicio"  component={Inicio} />
         <Route path="/ingresar" component={Login} />
         <Route path="/detalles/:id" component={Details} />
