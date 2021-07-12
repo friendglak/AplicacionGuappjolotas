@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react'
 import {
-    Form,
-    FormInput,
     FormButton,
     ContainerMain,
     InicioHeading,
@@ -17,6 +15,7 @@ import getProductos from '../helpers/getProductos.js'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import NavCategoria from '../hooks/NavCategoria'
+import SearchProducto from '../hooks/SearchProducto'
 
 
 const Inicio = () => {
@@ -45,10 +44,7 @@ const Inicio = () => {
                 <InicioHeading>
                     Nada como una Guajolota para empezar el día.
                 </InicioHeading>
-                <Form>
-                    <FormInput id="search" type="search" name="" required placeholder="Sabor de guajalota, bebida...">
-                    </FormInput>
-                </Form>
+                <SearchProducto/>
                 {/* Agregar nav categoria */}
                 <NavCategoria productos={productos} setProductosCategoria={setProductosCategoria}/>
                 <DivPadre >
