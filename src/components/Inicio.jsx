@@ -16,20 +16,26 @@ import {
 import getProductos from '../helpers/getProductos.js'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import NavCategoria from '../hooks/NavCategoria'
 
 
 const Inicio = () => {
     const [productos, setProductos] = useState([])
-
+    const [productosCategoria, setProductosCategoria] = useState([])
 
     const updateProductos = () => {
         getProductos()
             .then((products) => {
-                setProductos(products)
+                setProductos(products);
+                //sube info a producttosCateogria (categoria "Guajolotas")
+                const guajolota =  products.filter(ele => ele.categoria === "Guajolotas");
+                setProductosCategoria(guajolota);
             })
     }
     useEffect(() => {
         updateProductos()
+
+
     }, [])
 
     return (
@@ -43,9 +49,11 @@ const Inicio = () => {
                     <FormInput id="search" type="search" name="" required placeholder="Sabor de guajalota, bebida...">
                     </FormInput>
                 </Form>
-                <DivPadre>
+                {/* Agregar nav categoria */}
+                <NavCategoria productos={productos} setProductosCategoria={setProductosCategoria}/>
+                <DivPadre >
                     {
-                        productos.map((element) => (
+                        productosCategoria.map((element) => (
                             <DetailsLink to={`/detalles/${element.id}`} key={element.id}>
                                 <DivHijo  >
                                     <DivImg style={{ backgroundImage: `url(${element.imagen})` }} />
