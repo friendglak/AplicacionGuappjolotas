@@ -13,7 +13,6 @@ import {
 } from '../style/InicioStyles'
 import getProductos from '../helpers/getProductos.js'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import NavCategoria from '../hooks/NavCategoria'
 import SearchProducto from '../hooks/SearchProducto'
 
@@ -26,7 +25,7 @@ const Inicio = () => {
         getProductos()
             .then((products) => {
                 setProductos(products);
-                //sube info a producttosCateogria (categoria "Guajolotas")
+                //Sube info a producttosCateogria (categoria "Guajolotas")
                 const guajolota =  products.filter(ele => ele.categoria === "Guajolotas");
                 setProductosCategoria(guajolota);
             })
