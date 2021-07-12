@@ -24,7 +24,6 @@ const App = () => {
         <Route path="/ingresar" component={Login} />
         <Route path="/detalles/:id" component={Details} />
         <Route path="/carrito" component={Carrito} />
-
       </Switch>
       <Footer />
     </Router >
