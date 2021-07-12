@@ -4,7 +4,9 @@ import {
     Form
 
 } from '../style/InicioStyles'
-const SearchProducto = () => {
+
+
+const SearchProducto = ({productos}) => {
     const [textSearch, setTextSearch] = useState("");
     const [search, setSearch] = useState("");
     console.log(textSearch)
@@ -13,11 +15,10 @@ const SearchProducto = () => {
     const _handleSearch = () =>{
         setSearch(textSearch)
     };
-    //pendiente
     const filtroBusqueda = productos.filter(ele =>(
         ele.nombre.toLowerCase().includes(search.toLowerCase())
     ));
-    //
+    console.log(filtroBusqueda)
     return (
         <Form onSubmit={(e)=>{ e.preventDefault(); _handleSearch()}}>
             <FormInput 
@@ -34,4 +35,4 @@ const SearchProducto = () => {
     )
 }
 
-export default SearchProducto
+export default React.memo(SearchProducto)
