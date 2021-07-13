@@ -39,7 +39,6 @@ const Carrito = () => {
     }
     return (
         <div>
-            <h1>Carrito</h1>
             <PaintProductoCarrito carrito={carrito} setCarrito={setCarrito} />
             <DivButton>
                 <ButtonPay role="link" onClick={_handlePagar}>Pagar</ButtonPay>

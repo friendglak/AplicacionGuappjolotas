@@ -3,19 +3,19 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
 import {
-ContainerButtonD,
-ButtonD,
-ContainerDetails,
-ContadorP,
-DetailPrecio,
-ContainerMainCombo,
-ContainerCombo,
-ContainerSabor,
-PintarCombo,
-TextoCombo,
-TextoSabor,
-TextoPintarCombo,
-ButtonCar
+    ContainerButtonD,
+    ButtonD,
+    ContainerDetails,
+    ContadorP,
+    DetailPrecio,
+    ContainerMainCombo,
+    ContainerCombo,
+    ContainerSabor,
+    PintarCombo,
+    TextoCombo,
+    TextoSabor,
+    TextoPintarCombo,
+    ButtonCar
 }
     from '../style/DetailsStyles';
 import getProductoId from '../helpers/getProductoId';
@@ -28,10 +28,10 @@ import ComboCheck from '../hooks/ComboCheck';
 
 const Details = () => {
 
-    const {producto, getProducto} = getProductoId();
-    const {sabores, getSabores} = getSaboresApi();
-    const {contadorProducto, _handleAumentar, _handleDisminuir} = CantidadProducto();
-    const {productoCheck, _handleCheck, _handleRemoveCheck} = ComboCheck();
+    const { producto, getProducto } = getProductoId();
+    const { sabores, getSabores } = getSaboresApi();
+    const { contadorProducto, _handleAumentar, _handleDisminuir } = CantidadProducto();
+    const { productoCheck, _handleCheck, _handleRemoveCheck } = ComboCheck();
     const [productos, setProductos] = useState(null);
 
 
@@ -39,7 +39,7 @@ const Details = () => {
     useEffect(() => {
         getProducto()
         getSabores();
-// Obtiene de la api los productos que iran en Guajocombo
+        // Obtiene de la api los productos que iran en Guajocombo
         const updateProductos = () => {
             getProductos()
                 .then((products) => {
@@ -51,7 +51,7 @@ const Details = () => {
 
 
 
-//definiendo el Sabor del producto
+    //definiendo el Sabor del producto
     const tipoSabor = () => {
         if (producto.tipoSabor && sabores) {
             return producto.tipoSabor === "tamal" ? pintarSabor(sabores.tamal) :
@@ -68,8 +68,8 @@ const Details = () => {
                 style={addOpacidad(element.sabor)}></img>
         ))
     }
-// 
-//Definiendo el Combo segun la informacion de la API
+    // 
+    //Definiendo el Combo segun la informacion de la API
     const tipoCombo = () => {
         if (producto.tipoSabor && productos) {
             return producto.tipoSabor === "tamal" ? filtrarCombo("Bebidas") :
@@ -93,25 +93,25 @@ const Details = () => {
             </PintarCombo >
         )))
     }
-//
-// Subiendo A localStorage
+    //
+    // Subiendo A localStorage
     const _handleAddCarrito = () => {
         //sube los productos del combo
         const comboCheck = [...new Set(productoCheck)];
 
         const productoPrincipal =
-           {
-                nombre: producto.nombre,
-                id: producto.id,
-                precio : producto.precio,
-                imagen: producto.imagen,
-                cantidad: contadorProducto,
-            };
+        {
+            nombre: producto.nombre,
+            id: producto.id,
+            precio: producto.precio,
+            imagen: producto.imagen,
+            cantidad: contadorProducto,
+        };
         const carrito = comboCheck;
-        
-        productoPrincipal.cantidad > 0? comboCheck.unshift(productoPrincipal): null;
-                // {comboCheck}
-        
+
+        productoPrincipal.cantidad > 0 ? comboCheck.unshift(productoPrincipal) : null;
+        // {comboCheck}
+
 
         localStorage.setItem("Carrito", JSON.stringify(carrito));
 
