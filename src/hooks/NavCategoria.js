@@ -1,19 +1,20 @@
-import React from 'react'
+import React from "react";
+import { ButtonCategoria } from "../style/CategoriaStyles";
 
-const NavCategoria = ({productos, setProductosCategoria}) => {
-    
+const NavCategoria = ({ productos, setProductosCategoria }) => {
+  const _handleCategoria = (e) => {
+    const categoria = productos.filter(
+      (ele) => ele.categoria === e.target.innerText
+    );
+    setProductosCategoria(categoria);
+  };
+  return (
+    <nav>
+      <ButtonCategoria onClick={_handleCategoria}>Guajolotas</ButtonCategoria>
+      <ButtonCategoria onClick={_handleCategoria}>Bebidas</ButtonCategoria>
+      <ButtonCategoria onClick={_handleCategoria}>Tamales</ButtonCategoria>
+    </nav>
+  );
+};
 
-    const _handleCategoria = (e) => {
-        const categoria = productos.filter(ele => ele.categoria === e.target.innerText);
-        setProductosCategoria(categoria)
-    }
-    return (
-        <nav>
-            <button onClick={_handleCategoria}>Guajolotas</button>
-            <button onClick={_handleCategoria}>Bebidas</button>
-            <button onClick={_handleCategoria}>Tamales</button>
-        </nav>
-    )
-}
-
-export default NavCategoria
+export default NavCategoria;

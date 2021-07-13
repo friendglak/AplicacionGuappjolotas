@@ -22,6 +22,7 @@ const ContainerButtonD = styled.div`
     margin-bottom: 20px;
     margin-top: 15px
 
+
 `;
 
 const ContadorP = styled.p`
@@ -81,6 +82,7 @@ const ButtonCar = styled.button`
     outline: none;
     margin-bottom: 50px;
     border: 1px solid #FA4A0C;
+    cursor: pointer;
 `;
 
 

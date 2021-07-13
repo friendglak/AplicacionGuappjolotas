@@ -1,20 +1,22 @@
 import React from 'react'
+import { ContenedorCarrito, ContenedorItemCarrito, ImgItemCarrito } from '../style/CarritoStyles';
 import EliminarProductoCarrito from './EliminarProductoCarrito'
 
 const PaintProductoCarrito = ({carrito, setCarrito}) => {
     const {_eliminarProductoCarrito} = EliminarProductoCarrito();
     return (
-        <div>
+        <ContenedorCarrito>
             {carrito.map(ele =>(
-                <div key={ele.id}>
-                    <img src={ele.imagen} alt={ele.nombre} />
+                <ContenedorItemCarrito key={ele.id}>
+                    <ImgItemCarrito src={ele.imagen} alt={ele.nombre} />
                     <p>{ele.nombre}</p>
                     <p>{ele.precio}</p>
                     <p>Cantidad: {ele.cantidad}</p>
                     <button onClick={() => _eliminarProductoCarrito(ele.id, carrito, setCarrito)}>Eliminar</button>
-                </div>
+                </ContenedorItemCarrito>
             ))}
-        </div>
+        </ContenedorCarrito>
+       
     )
 }
 
