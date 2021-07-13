@@ -17,7 +17,6 @@ const Carrito = () => {
     }, []);
     return (
         <div>
-            <h1>Carrito</h1>
             <PaintProductoCarrito carrito={carrito} setCarrito={setCarrito} />
             <DivButton>
                 <ButtonPay>Pagar</ButtonPay>
