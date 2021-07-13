@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import GetLocalStorage from '../helpers/GetLocalStorage'
 import PaintProductoCarrito from '../hooks/PaintProductoCarrito';
 import { DivButton, ButtonPay } from '../style/CarritoStyles';
+import { loadStripe } from "@stripe/stripe-js";
 const stripePromise = loadStripe("pk_test_51J3WxqBbP3JGRmwnfVffXQE2tdimeAg5wrqN2RYl4z2eJcQO92U7xWYUILSmliy9Ay6wvAAOYIgKdv9GPbmOaK8G003KgExXWh");
 // import ProductosPasarelaStripe from '../hooks/ProductosPasarelaStripe';
 
